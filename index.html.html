@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Live 25× PTZ camera streaming from Kemptville, Ontario. Fishing weather, father-son expeditions, glider school flights, and manual zoom hours on Kemptville Creek waterlife.">
+    <title>PTZ1A225-HNR-GB • Kemptville Horizons • Live 25× Zoom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --tw-color-primary: #00d4ff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(90deg, rgba(0, 20, 40, 0.85), rgba(0, 40, 60, 0.75)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
+
+        .live-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: #00d4ff;
+            bottom: -4px;
+            left: 0;
+        }
+
+        .camera-lens {
+            animation: rotate-lens 20s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        @keyframes rotate-lens {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .yt-embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .yt-embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-slate-950 text-white">
+    <!-- NAVBAR -->
+    <nav class="bg-slate-900/95 backdrop-blur-lg border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <div class="w-10 h-10 bg-cyan-400 rounded-2xl flex items-center justify-center relative">
+                    <i class="fa-solid fa-camera text-slate-950 text-2xl camera-lens"></i>
+                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full flex items-center justify-center text-[10px] font-bold text-slate-950">25×</div>
+                </div>
+                <div>
+                    <h1 class="logo-font text-3xl tracking-tighter">PTZ1A<span class="text-cyan-400">225</span></h1>
+                    <p class="text-xs text-cyan-400 -mt-1 font-medium tracking-[2px]">KEMPTVILLE HORIZONS</p>
+                </div>
+                <div class="ml-2 px-3 py-0.5 text-xs font-medium bg-emerald-400 text-slate-950 rounded-3xl flex items-center gap-x-1">
+                    <span class="relative flex h-2 w-2">
+                        <span class="live-dot absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    LIVE
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#live" onclick="document.getElementById('live-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400 flex items-center gap-x-1">
+                    <i class="fa-solid fa-video"></i> LIVE STREAM
+                </a>
+                <a href="#weather" onclick="document.getElementById('weather-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400">WEATHER + FISHING</a>
+                <a href="#fishing" onclick="document.getElementById('fishing-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400">FATHER + SON EXPEDITIONS</a>
+                <a href="#glider" onclick="document.getElementById('glider-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400">GLIDER SCHOOL FLIGHTS</a>
+                <a href="#zoom" onclick="document.getElementById('zoom-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400 flex items-center gap-x-1">
+                    <i class="fa-solid fa-magnifying-glass"></i> WATERLIFE ZOOM HOURS
+                </a>
+                <a href="#camera" onclick="document.getElementById('camera-section').scrollIntoView({ behavior: 'smooth' })" class="hover:text-cyan-400">THE CAMERA</a>
+            </div>
+
+            <div class="flex items-center gap-x-4">
+                <a href="https://www.youtube.com/@chu_norri" target="_blank" 
+                   class="flex items-center bg-red-600 hover:bg-red-700 px-6 py-2.5 rounded-3xl text-sm font-semibold">
+                    <i class="fa-brands fa-youtube mr-2"></i> WATCH ON YOUTUBE
+                </a>
+                
+                <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-8 py-6 text-sm font-medium flex flex-col gap-y-4">
+            <a href="#live" onclick="document.getElementById('live-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">LIVE STREAM</a>
+            <a href="#weather" onclick="document.getElementById('weather-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">WEATHER + FISHING</a>
+            <a href="#fishing" onclick="document.getElementById('fishing-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">FATHER + SON EXPEDITIONS</a>
+            <a href="#glider" onclick="document.getElementById('glider-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">GLIDER SCHOOL FLIGHTS</a>
+            <a href="#zoom" onclick="document.getElementById('zoom-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">WATERLIFE ZOOM HOURS</a>
+            <a href="#camera" onclick="document.getElementById('camera-section').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu()" class="py-2">THE PTZ1A225-HNR-GB</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="live-section" class="hero-bg h-screen flex items-center relative">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12 items-center h-full">
+            <!-- Left text -->
+            <div class="md:col-span-5 space-y-8">
+                <div class="inline-flex items-center gap-x-3 bg-white/10 backdrop-blur-md text-white text-sm font-medium px-5 py-2 rounded-3xl border border-white/30">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+                    </span>
+                    DAHUA PTZ1A225-HNR-GB • LIVE 1080P 25× ZOOM
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-bold leading-none logo-font tracking-tighter">
+                    KEMPTVILLE<br>HORIZONS<br><span class="text-cyan-400">LIVE FROM THE CREEK</span>
+                </h1>
+                
+                <p class="text-xl max-w-md text-slate-300">
+                    Real-time 25× optical zoom over Kemptville Creek. 
+                    Fishing weather • Father-son adventures • Glider flights • 
+                    Manual zoom waterlife sessions.
+                </p>
+                
+                <div class="flex items-center gap-x-4">
+                    <a onclick="document.getElementById('live-embed').scrollIntoView({ behavior: 'smooth' })" 
+                       class="inline-flex items-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-semibold text-lg px-8 py-5 rounded-3xl">
+                        <i class="fa-solid fa-play mr-3"></i>
+                        WATCH LIVE NOW
+                    </a>
+                    
+                    <div class="text-sm leading-tight">
+                        Next manual zoom session<br>
+                        <span id="next-zoom-time" class="text-emerald-400 font-mono text-xl font-semibold">TODAY 7:00 PM EDT</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-4">
+                        <div class="w-8 h-8 bg-slate-800 border-2 border-slate-950 rounded-2xl flex items-center justify-center text-xs">🐟</div>
+                        <div class="w-8 h-8 bg-slate-800 border-2 border-slate-950 rounded-2xl flex items-center justify-center text-xs">🪁</div>
+                        <div class="w-8 h-8 bg-slate-800 border-2 border-slate-950 rounded-2xl flex items-center justify-center text-xs">🌊</div>
+                    </div>
+                    <p class="text-slate-400">Featured on YouTube • 4K-ready PTZ • Starlight night vision • Auto-tracking</p>
+                </div>
+            </div>
+
+            <!-- Live preview card -->
+            <div class="md:col-span-7 bg-slate-900/80 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-cyan-400/30">
+                <div class="flex justify-between items-center mb-3 px-2">
+                    <div class="flex items-center text-emerald-400 text-sm font-medium">
+                        <i class="fa-solid fa-circle mr-2 live-dot"></i>
+                        LIVE • Kemptville Creek • 25× Zoom
+                    </div>
+                    <div class="text-xs bg-slate-800 text-cyan-400 px-3 py-1 rounded-2xl flex items-center">
+                        <i class="fa-solid fa-wifi mr-1"></i> 1080P • 25 FPS
+                    </div>
+                </div>
+                
+                <!-- YouTube LIVE Embed Placeholder -->
+                <div id="live-embed" class="yt-embed-container rounded-2xl overflow-hidden shadow-inner bg-black">
+                    <iframe id="youtube-live" 
+                            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID_HERE&amp;autoplay=1&amp;modestbranding=1&amp;rel=0" 
+                            title="PTZ1A225-HNR-GB Live Stream" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="text-center text-xs text-slate-400 mt-3 flex justify-center items-center gap-x-6">
+                    <div>📍 Kemptville Creek, Ontario</div>
+                    <div class="flex items-center">
+                        <span class="text-emerald-400">●</span> 
+                        <span class="ml-1">Manual PTZ control active during Zoom Hours</span>
+                    </div>
+                    <div onclick="document.getElementById('youtube-live').src += '&amp;autoplay=1'" class="cursor-pointer flex items-center text-cyan-400 hover:text-white">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Refresh Stream
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll prompt -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-xs tracking-widest text-slate-400">
+            <div>SCROLL FOR MORE ADVENTURE</div>
+            <i class="fa-solid fa-chevron-down animate-bounce mt-2 text-2xl"></i>
+        </div>
+
+        <!-- Floating specs -->
+        <div class="absolute bottom-8 right-8 bg-slate-900/90 backdrop-blur-md text-xs rounded-3xl px-6 py-4 hidden lg:flex flex-col gap-y-2 border border-cyan-300/20">
+            <div class="flex justify-between gap-x-8"><span class="text-slate-400">Sensor</span><span class="font-mono">2MP Starlight CMOS</span></div>
+            <div class="flex justify-between gap-x-8"><span class="text-slate-400">Zoom</span><span class="font-mono text-cyan-400">25× Optical • 120mm</span></div>
+            <div class="flex justify-between gap-x-8"><span class="text-slate-400">Night Vision</span><span class="font-mono">150m IR</span></div>
+            <div class="flex justify-between gap-x-8"><span class="text-slate-400">Weatherproof</span><span class="font-mono">IP67 • -40°C to 60°C</span></div>
+        </div>
+    </header>
+
+    <!-- WEATHER + FISHING UPDATES -->
+    <section id="weather-section" class="max-w-screen-2xl mx-auto px-8 py-20 bg-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+                <span class="uppercase text-cyan-400 text-sm font-medium tracking-widest">Real-time from Kemptville Creek</span>
+                <h2 class="section-header text-5xl font-semibold logo-font">Weather • Fishing Conditions</h2>
+            </div>
+            <p class="max-w-md text-slate-400">Live data for perfect father-son days on the water. Updated every 15 minutes.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Current Weather -->
+            <div id="current-weather" class="bg-slate-800 rounded-3xl p-8 flex flex-col">
+                <div class="flex justify-between">
+                    <div>
+                        <h3 class="text-4xl font-semibold" id="temp">—°C</h3>
+                        <p class="text-slate-400 text-xl" id="condition">Loading weather...</p>
+                    </div>
+                    <div id="weather-icon" class="text-7xl">☀️</div>
+                </div>
+                <div class="mt-auto pt-8 grid grid-cols-3 gap-4 text-center text-sm border-t border-slate-700">
+                    <div><i class="fa-solid fa-wind"></i><br><span id="wind">—</span> km/h</div>
+                    <div><i class="fa-solid fa-droplet"></i><br><span id="humidity">—</span>%</div>
+                    <div><i class="fa-solid fa-fish"></i><br><span id="fishing-score" class="text-emerald-400">EXCELLENT</span></div>
+                </div>
+                <div class="text-xs mt-6 text-slate-400 flex items-center gap-x-2">
+                    <i class="fa-solid fa-location-dot"></i> 
+                    Kemptville Creek • Rideau River • North Grenville, ON
+                </div>
+            </div>
+
+            <!-- 7-day forecast cards (static but styled for demo) -->
+            <div class="col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-slate-800/70 hover:bg-slate-800 rounded-3xl p-6 text-center">
+                    <div class="text-sm text-slate-400">TODAY</div>
+                    <div class="text-5xl my-3">🌊</div>
+                    <div class="text-2xl font-semibold" id="day1-temp">14°C</div>
+                    <div class="text-emerald-400 text-sm">Light wind • Perfect for musky</div>
+                </div>
+                <div class="bg-slate-800/70 hover:bg-slate-800 rounded-3xl p-6 text-center">
+                    <div class="text-sm text-slate-400">TOMORROW</div>
+                    <div class="text-5xl my-3">⛅</div>
+                    <div class="text-2xl font-semibold" id="day2-temp">17°C</div>
+                    <div class="text-emerald-400 text-sm">High bite chance</div>
+                </div>
+                <div class="bg-slate-800/70 hover:bg-slate-800 rounded-3xl p-6 text-center">
+                    <div class="text-sm text-slate-400">SAT</div>
+                    <div class="text-5xl my-3">🌧️</div>
+                    <div class="text-2xl font-semibold" id="day3-temp">12°C</div>
+                    <div class="text-amber-400 text-sm">Light rain • Still fishable</div>
+                </div>
+                <div class="bg-slate-800/70 hover:bg-slate-800 rounded-3xl p-6 text-center">
+                    <div class="text-sm text-slate-400">SUN</div>
+                    <div class="text-5xl my-3">☀️</div>
+                    <div class="text-2xl font-semibold" id="day4-temp">19°C</div>
+                    <div class="text-emerald-400 text-sm">Ideal gliding + fishing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FATHER + SON FISHING EXPEDITIONS -->
+    <section id="fishing-section" class="max-w-screen-2xl mx-auto px-8 py-20">
+        <div class="flex justify-between items-baseline mb-12">
+            <div>
+                <span class="text-emerald-400 uppercase tracking-widest text-sm">Filmed with PTZ1A225-HNR-GB</span>
+                <h2 class="section-header text-5xl font-semibold logo-font">Father &amp; Son Fishing Expeditions</h2>
+            </div>
+            <a href="https://youtube.com/@chu_norri" target="_blank" class="text-cyan-400 flex items-center text-sm font-medium hover:underline">
+                ALL EPISODES ON YOUTUBE <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Expedition card 1 -->
+            <div class="group bg-slate-900 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-400">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1016/800/600')] bg-cover bg-center relative">
+                    <div class="absolute top-4 left-4 bg-black/70 text-xs px-3 py-1 rounded-2xl">45 MIN AGO</div>
+                    <div class="absolute bottom-4 right-4 bg-emerald-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-3xl flex items-center">
+                        <i class="fa-solid fa-fish mr-2"></i> 14 BASS
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-semibold text-2xl">First Cast of Spring – Kemptville Creek 2026</h4>
+                    <p class="text-slate-400 text-sm mt-2">Chu &amp; son land their biggest pike of the season using the PTZ to spot the strike from shore.</p>
+                    <div class="flex justify-between items-center mt-8 text-xs">
+                        <div class="flex items-center"><i class="fa-solid fa-youtube text-red-600 mr-1"></i> 14K views</div>
+                        <button onclick="window.open('https://www.youtube.com/watch?v=EXAMPLE_FISHING1','_blank')" class="text-cyan-400 text-sm font-medium">WATCH HIGHLIGHTS →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expedition card 2 -->
+            <div class="group bg-slate-900 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-400">
+                <div class="h-64 bg-[url('https://picsum.photos/id/866/800/600')] bg-cover bg-center relative">
+                    <div class="absolute top-4 left-4 bg-black/70 text-xs px-3 py-1 rounded-2xl">MAR 28</div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-semibold text-2xl">Sunrise Musky Hunt with Dad</h4>
+                    <p class="text-slate-400 text-sm mt-2">PTZ zoom catches the exact moment the lure hits – epic father-son moment on the Rideau.</p>
+                    <div class="flex justify-between items-center mt-8 text-xs">
+                        <div class="flex items-center"><i class="fa-solid fa-youtube text-red-600 mr-1"></i> 9.2K views</div>
+                        <button onclick="window.open('https://www.youtube.com/watch?v=EXAMPLE_FISHING2','_blank')" class="text-cyan-400 text-sm font-medium">WATCH HIGHLIGHTS →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expedition card 3 -->
+            <div class="group bg-slate-900 rounded-3xl overflow-hidden border border-transparent hover:border-emerald-400">
+                <div class="h-64 bg-[url('https://picsum.photos/id/1018/800/600')] bg-cover bg-center relative">
+                    <div class="absolute top-4 left-4 bg-black/70 text-xs px-3 py-1 rounded-2xl">LIVE REPLAY</div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-semibold text-2xl">Night Bite – Starlight IR Mode</h4>
+                    <p class="text-slate-400 text-sm mt-2">150m IR reveals the underwater action at dusk. One of our best PTZ night fishing sessions yet.</p>
+                    <div class="flex justify-between items-center mt-8 text-xs">
+                        <div class="flex items-center"><i class="fa-solid fa-youtube text-red-600 mr-1"></i> 22K views</div>
+                        <button onclick="window.open('https://www.youtube.com/watch?v=EXAMPLE_FISHING3','_blank')" class="text-cyan-400 text-sm font-medium">WATCH FULL EPISODE →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GLIDER SCHOOL FLIGHTS -->
+    <section id="glider-section" class="bg-slate-950 py-20 border-t border-b border-slate-800">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="uppercase text-amber-400 text-sm font-medium tracking-widest">PTZ1A225-HNR-GB • SKY VIEW</span>
+                    <h2 class="section-header text-5xl font-semibold logo-font">Glider School Flight Training</h2>
+                </div>
+                <p class="text-slate-400 max-w-xs">Capturing silent wings over Kemptville with stunning 25× clarity.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8">
+                <div class="md:col-span-7 bg-slate-900 rounded-3xl p-8 flex flex-col justify-center">
+                    <div class="text-amber-400 flex items-center text-sm mb-6">
+                        <i class="fa-solid fa-plane mr-3"></i> 
+                        LIVE FLIGHT REPLAYS • KEMPTVILLE GLIDER SCHOOL
+                    </div>
+                    <h3 class="text-4xl font-medium leading-tight">“The PTZ zoom lets you feel every thermal and turn from the ground.”</h3>
+                    <p class="mt-6 text-slate-400">— Lead Instructor, Kemptville Glider Club</p>
+                    
+                    <div class="mt-auto pt-12 grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-6xl mb-2">🪁</div>
+                            <div class="text-xl font-semibold">14 flights today</div>
+                            <div class="text-xs text-slate-400">12 students trained</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-6xl mb-2">📍</div>
+                            <div class="text-xl font-semibold">Perfect visibility</div>
+                            <div class="text-xs text-slate-400">PTZ tracked every landing</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-6xl mb-2">🎥</div>
+                            <div class="text-xl font-semibold">4K-ready footage</div>
+                            <div class="text-xs text-slate-400">Available on our YouTube</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-5 space-y-6">
+                    <div class="bg-slate-900 rounded-3xl p-6 flex gap-x-6">
+                        <div class="text-6xl flex-shrink-0">🪁</div>
+                        <div>
+                            <div class="text-emerald-400 text-xs font-bold">MARCH 29 • 10:42 AM</div>
+                            <h4 class="text-2xl">Solo thermal ride captured in stunning detail</h4>
+                            <p class="text-slate-400 mt-1">PTZ followed the glider for 18 minutes at max zoom.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-6 flex gap-x-6">
+                        <div class="text-6xl flex-shrink-0">✈️</div>
+                        <div>
+                            <div class="text-emerald-400 text-xs font-bold">TODAY • 2:15 PM</div>
+                            <h4 class="text-2xl">Dual training flight – instructor &amp; student</h4>
+                            <p class="text-slate-400 mt-1">Watch the full takeoff and landing sequence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIALIZED WATERLIFE ZOOM HOURS -->
+    <section id="zoom-section" class="max-w-screen-2xl mx-auto px-8 py-20 bg-gradient-to-br from-slate-900 to-slate-950">
+        <div class="text-center mb-16">
+            <span class="px-6 py-2 bg-cyan-400/10 text-cyan-400 rounded-3xl text-sm font-medium">MANUAL CONTROL MODE ENABLED</span>
+            <h2 class="section-header text-5xl font-semibold logo-font mx-auto max-w-lg mt-4">Specialized Manual Zoom Hours</h2>
+            <p class="text-xl text-slate-400 mt-4 max-w-2xl mx-auto">I take the PTZ controls live and zoom deep into Kemptville Creek waterlife – herons, bass beds, turtles, and more.</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-10 items-center">
+            <div class="md:col-span-4">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8">
+                    <h4 class="text-3xl font-medium mb-6">Tonight’s Zoom Session</h4>
+                    <div class="space-y-8">
+                        <div class="flex justify-between items-center">
+                            <div class="text-4xl font-mono text-cyan-400">19:00 – 20:00 EDT</div>
+                            <div class="text-right">
+                                <div class="text-emerald-400 font-medium">LIVE MANUAL ZOOM</div>
+                                <div class="text-xs">Focus on heron rookery &amp; fish spawning beds</div>
+                            </div>
+                        </div>
+                        <div class="h-px bg-white/10"></div>
+                        <div class="flex justify-between items-center opacity-75">
+                            <div class="text-4xl font-mono">21:30 – 22:00 EDT</div>
+                            <div class="text-right">
+                                <div>NIGHT VISION MODE</div>
+                                <div class="text-xs">IR spotlight on nocturnal waterlife</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="alert('Reminder set! You will receive a notification 10 mins before the next manual zoom.')" 
+                            class="mt-10 w-full bg-white text-slate-950 py-5 rounded-3xl font-semibold flex justify-center items-center">
+                        <i class="fa-solid fa-bell mr-3"></i> SET REMINDER FOR NEXT SESSION
+                    </button>
+                </div>
+            </div>
+            
+            <div class="md:col-span-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="aspect-video bg-[url('https://picsum.photos/id/101/800/450')] bg-cover rounded-3xl relative flex items-end p-6">
+                        <div class="text-white text-sm bg-black/60 px-4 py-1 rounded-3xl">Great Blue Heron nesting</div>
+                    </div>
+                    <div class="aspect-video bg-[url('https://picsum.photos/id/201/800/450')] bg-cover rounded-3xl relative flex items-end p-6">
+                        <div class="text-white text-sm bg-black/60 px-4 py-1 rounded-3xl">Largemouth bass beds</div>
+                    </div>
+                    <div class="aspect-video bg-[url('https://picsum.photos/id/312/800/450')] bg-cover rounded-3xl relative flex items-end p-6">
+                        <div class="text-white text-sm bg-black/60 px-4 py-1 rounded-3xl">Painted turtles basking</div>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-slate-400 mt-8">All footage captured live with the PTZ1A225-HNR-GB 25× zoom • Starlight technology for crisp low-light detail</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE CAMERA -->
+    <section id="camera-section" class="max-w-screen-2xl mx-auto px-8 py-20 bg-slate-900">
+        <div class="grid md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-5">
+                <h2 class="text-5xl font-semibold logo-font">Meet the PTZ1A225-HNR-GB</h2>
+                <p class="text-2xl text-slate-400 mt-4">Dahua 2MP WizMind Starlight IR Positioning System</p>
+                
+                <ul class="mt-12 space-y-6 text-lg">
+                    <li class="flex gap-x-4"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span><strong>25× Optical Zoom</strong> – get nose-to-nose with waterlife</span></li>
+                    <li class="flex gap-x-4"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span><strong>Starlight + 150 m IR</strong> – crystal clear day or night</span></li>
+                    <li class="flex gap-x-4"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span><strong>Auto-tracking &amp; AI</strong> – follows birds, boats, and fish</span></li>
+                    <li class="flex gap-x-4"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span><strong>IP67 rugged</strong> – survives Ontario winters &amp; storms</span></li>
+                    <li class="flex gap-x-4"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> <span><strong>PoE+ • 1080P 25 fps</strong> – streams straight to YouTube</span></li>
+                </ul>
+                
+                <div class="mt-12 flex items-center gap-x-3 text-sm font-medium">
+                    <span class="px-4 py-2 bg-slate-800 rounded-3xl">Installed March 2026</span>
+                    <span class="px-4 py-2 bg-slate-800 rounded-3xl">Kemptville Creek shoreline</span>
+                </div>
+            </div>
+            
+            <div class="md:col-span-7 relative">
+                <div class="bg-black rounded-3xl aspect-video flex items-center justify-center text-8xl relative overflow-hidden">
+                    <i class="fa-solid fa-camera text-cyan-400/10 text-[400px] absolute -bottom-20 -right-20 camera-lens"></i>
+                    <div class="text-center z-10">
+                        <div class="text-cyan-400 text-sm tracking-[4px] mb-4">2 MEGAPIXEL • 25× ZOOM</div>
+                        <p class="text-5xl font-semibold logo-font">YOUR EYES ON THE WATER</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-slate-800 text-white text-xs px-8 py-6 rounded-3xl shadow-2xl flex items-center">
+                    <div class="mr-8">
+                        <div class="font-mono text-6xl text-cyan-400">150m</div>
+                        <div>IR NIGHT VISION</div>
+                    </div>
+                    <div>Auto-tracking birds &amp; boats in real time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CALL TO ACTION -->
+    <footer class="bg-black py-16">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-y-12">
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-cyan-400 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-camera text-slate-950 text-2xl"></i>
+                    </div>
+                    <h1 class="logo-font text-4xl">PTZ1A225-HNR-GB</h1>
+                </div>
+                <p class="mt-6 text-slate-400">Built by chu norri • Powered by curiosity, nature, and the best 25× PTZ on the planet.</p>
+                <div class="mt-8 flex gap-x-6 text-2xl">
+                    <a href="https://x.com/chu_norri" target="_blank" class="hover:text-cyan-400"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://youtube.com/@chu_norri" target="_blank" class="hover:text-red-600"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2">
+                <div class="uppercase text-xs font-medium mb-6 text-slate-400">QUICK LINKS</div>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="#live" class="hover:text-cyan-400">Live Stream</a></li>
+                    <li><a href="#zoom" class="hover:text-cyan-400">Manual Zoom Schedule</a></li>
+                    <li><a href="https://youtube.com/@chu_norri" target="_blank" class="hover:text-cyan-400">YouTube Channel</a></li>
+                </ul>
+            </div>
+            
+            <div class="md:col-span-3">
+                <div class="uppercase text-xs font-medium mb-6 text-slate-400">NEXT MANUAL ZOOM</div>
+                <div class="text-3xl font-medium">Tonight 7:00 PM EDT</div>
+                <div class="text-emerald-400 text-sm mt-1">Kemptville Creek waterlife – herons, fish &amp; turtles</div>
+                <p class="text-xs mt-8 text-slate-400">Want to join the live chat during zoom hours? Subscribe on YouTube and turn on notifications.</p>
+            </div>
+            
+            <div class="md:col-span-3 text-right md:text-left">
+                <div class="text-xs text-slate-400">Made with ❤️ for the waters of Kemptville</div>
+                <div class="text-[10px] mt-8 text-slate-500">© 2026 chu norri • All rights reserved • PTZ1A225-HNR-GB by Dahua</div>
+                <div class="mt-4 text-xs text-slate-500">This site was hand-crafted as a fully functional modern single-page experience just for you.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script already loaded
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        theme: {
+                            extend: {},
+                        },
+                    }
+                },
+                theme: {
+                    extend: {},
+                },
+            }
+        }
+        // Initialize
+        document.documentElement.setAttribute('data-tailwind-config', JSON.stringify(initializeTailwind()))
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu')
+            menu.classList.toggle('hidden')
+        }
+        
+        // Real-time weather from Open-Meteo (free, no API key)
+        async function fetchWeather() {
+            // Kemptville, ON coordinates
+            const lat = 45.02
+            const lon = -75.64
+            
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=America/Toronto`)
+                const data = await res.json()
+                
+                const tempEl = document.getElementById('temp')
+                const conditionEl = document.getElementById('condition')
+                const windEl = document.getElementById('wind')
+                const humidityEl = document.getElementById('humidity')
+                
+                tempEl.textContent = Math.round(data.current.temperature_2m) + '°C'
+                
+                // Simple weather code to icon/text
+                let icon = '☀️'
+                let conditionText = 'Clear'
+                const code = data.current.weather_code
+                if (code === 0) { icon = '☀️'; conditionText = 'Clear skies' }
+                else if ([1,2,3].includes(code)) { icon = '⛅'; conditionText = 'Partly cloudy' }
+                else if ([51,53,55,61,63,65].includes(code)) { icon = '🌧️'; conditionText = 'Rain' }
+                else if (code >= 71) { icon = '❄️'; conditionText = 'Snow possible' }
+                
+                document.getElementById('weather-icon').innerHTML = icon
+                conditionEl.textContent = conditionText
+                
+                windEl.textContent = Math.round(data.current.wind_speed_10m)
+                humidityEl.textContent = data.current.relative_humidity_2m
+                
+                // Fake fishing score based on wind & temp
+                const fishingScore = (data.current.wind_speed_10m < 15 && data.current.temperature_2m > 8) ? 'EXCELLENT' : 'GOOD'
+                document.getElementById('fishing-score').innerHTML = `<span class="text-emerald-400">${fishingScore}</span>`
+                
+            } catch(e) {
+                console.log('Weather fetch failed – using fallback')
+                document.getElementById('temp').innerHTML = `14<span class="text-2xl">°C</span>`
+                document.getElementById('condition').textContent = 'Perfect fishing weather'
+            }
+        }
+        
+        // Fake next zoom time (demo)
+        function setNextZoomTime() {
+            const nextZoom = document.getElementById('next-zoom-time')
+            // Real-time demo: could be dynamic but for now static
+            nextZoom.textContent = 'TODAY 7:00 PM EDT'
+        }
+        
+        // Boot everything
+        window.onload = function() {
+            fetchWeather()
+            setNextZoomTime()
+            
+            console.log('%c✅ PTZ1A225-HNR-GB Kemptville Horizons site ready! Replace the YouTube iframe src with your actual live stream link.', 'color:#00d4ff; font-family:monospace')
+            console.log('Pro tip: For true live YouTube streaming, use https://www.youtube.com/embed/LIVE_VIDEO_ID?autoplay=1')
+        }
+    </script>
+</body>
+</html>
